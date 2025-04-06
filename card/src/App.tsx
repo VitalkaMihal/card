@@ -1,12 +1,12 @@
 import {GlobalStyles} from "./globalStyles/GlobalStyles.tsx";
-import {Card} from "./layout/card/Card.tsx";
+import {Cards} from "./layout/card/Card.tsx";
 import styled from "styled-components";
 
 function App() {
 
     return (
         <Wrapper>
-            <Card/>
+            <Cards/>
             <GlobalStyles/>
         </Wrapper>
     )

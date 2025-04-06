@@ -1,6 +1,6 @@
 import styled, {css} from "styled-components";
 
-type ButtonProps = {
+export type ButtonProps = {
     buttonText?: string;
     isBlue?: boolean;
 }

@@ -1,26 +1,68 @@
 import styled from "styled-components";
 import pic from "../../assets/pic/pic.png";
-import {Button} from "../../components/button/Button.tsx";
+import {Button, ButtonProps} from "../../components/button/Button.tsx";
 
-export const Card = () => {
+type dataType = {
+    id: string;
+    src: string;
+    title: string;
+    text: string;
+    firstButtonText: ButtonProps;
+    secondButtonText: ButtonProps
+}
+
+const data: Array<dataType> = [
+    {
+        id:"1",
+        src: pic,
+        title: "Headline",
+        text: "Faucibus. Faucibus. Sit sit sapien sit tempusrisu ut. Sit molestie ornare in\n" +
+            "                        venen.",
+        firstButtonText: {
+           buttonText: "See more",
+            isBlue: true,
+        },
+        secondButtonText: {
+            buttonText: "Save",
+            isBlue: false,
+        },
+    },
+]
+
+
+
+export const Cards = () => {
     return (
-        <div>
-            <StyledCard>
-                <StyledPicture src={pic}/>
-                <SledCardContent>
-                    <StyledTitle>Headline</StyledTitle>
-                    <StyledText>
-                        Faucibus. Faucibus. Sit sit sapien sit tempusrisu ut. Sit molestie ornare in
-                        venen.
-                    </StyledText>
-                    <StyledButtonContainer>
-                        <Button buttonText="See more" isBlue={true}/>
-                        <Button buttonText="Save" isBlue={false}/></StyledButtonContainer>
-                    </SledCardContent>
-            </StyledCard>
+        <div className="App">
+            {data.map((dataItem: dataType) => <Card
+                src={dataItem.src}
+                title={dataItem.title}
+                text={dataItem.text}
+                firstButtonText={dataItem.firstButtonText}
+                secondButtonText={dataItem.secondButtonText}
+                id={dataItem.id}
+                key={dataItem.id}
+                />
+            )}
         </div>
     );
 };
+
+const Card = ({id, src, title, text, firstButtonText, secondButtonText}: dataType) => {
+    return (
+        <StyledCard id={id}>
+            <StyledPicture src={src} alt="pic"/>
+            <SledCardContent>
+                <StyledTitle>{title}</StyledTitle>
+                <StyledText>{text}</StyledText>
+                <StyledButtonContainer>
+                    <Button buttonText={firstButtonText.buttonText} isBlue={firstButtonText.isBlue}/>
+                    <Button buttonText={secondButtonText.buttonText}
+                            isBlue={secondButtonText.isBlue}/></StyledButtonContainer>
+            </SledCardContent>
+        </StyledCard>
+    )
+}
 
 const StyledCard = styled.div`
     width: 300px;
@@ -45,14 +87,12 @@ const StyledPicture = styled.img`
 `
 
 const StyledTitle = styled.h2`
-    font-family: "Inter", sans-serif;
     font-weight: 700;
     font-size: 16px;
     color: #000;
 `
 
 const StyledText = styled.p`
-    font-family: "Inter", sans-serif;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.6;

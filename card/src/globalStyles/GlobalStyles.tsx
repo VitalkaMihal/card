@@ -11,5 +11,12 @@ export const GlobalStyles = createGlobalStyle`
     a {
         text-decoration: none;
     }
-    
+
+    .App {
+        font-family: "Inter", sans-serif;
+        display: flex;
+        place-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
 `
